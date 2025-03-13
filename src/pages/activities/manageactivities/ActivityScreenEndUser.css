@@ -1,0 +1,15 @@
+.ActivityScreenEndUser{
+    padding: 30px;
+    height: calc(100vh - 80px);
+    width: calc(100vw - 300px);
+    overflow: auto;
+}
+
+.data-table {
+    box-shadow: 0 0 2px 2px #e2e1e2;
+    border-radius: 5px;
+}
+
+.enduser  .row label, input {
+    font-size: .82em;
+}
