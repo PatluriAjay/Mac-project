@@ -43,8 +43,8 @@ const ActivitySummaryClientCopy = () => {
     ]
 
     const searchfields = [
-        { "field": "Store Code", "type": "text", "placeholder": "Enter Store Code" },
-        { "field": "Store Name", "type": "text", "placeholder": "Enter Store Name" },
+        { "field": "Store Code", "type": "text", "placeholder": "SC001" },
+        { "field": "Store Name", "type": "text", "placeholder": "Store 1" },
         // { "field": "Status", "type": "dropdown", "placeholder": "Select Status", "options": ["New", "Assigned", "Accepted", "Rejected", "Inprogress", "Dispatched", "Completed"] },
         // { "field": "Start Date", "type": "date", "placeholder": "Enter Start Date" },
         // { "field": "End Date", "type": "date", "placeholder": "Enter End Date" },
