@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { getEmployees } from '../../../Api';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { MdDelete, MdEdit } from 'react-icons/md';
 
 function ManageEmployees({navigation}) {
     const navigate = useNavigate();
@@ -155,7 +156,7 @@ function ManageEmployees({navigation}) {
                 </Link>
             </div>
             <div className="card table-card">
-                <div className="tableContainer emp-table">
+                <div className="tableContainer activity-table">
                     <table className="table">
                         <thead>
                         <tr>
@@ -174,11 +175,17 @@ function ManageEmployees({navigation}) {
                                     <td>{row.phone_number}</td>
                                     <td>{row.designation}</td>
                                     <td>
-                                    <button className="btn btn-outline-primary px-4 me-2" onClick={() => {
+                                    <div className='d-flex  align-items-center'>
+                                        <button className="btn btn-add me-2" onClick={() => {
                                         localStorage.setItem('employee_number', row.employee_number)
                                         editPage();
-                                    }}>Edit</button>
-                                    <button className="btn btn-outline-danger px-3" onClick={() => {deleteEmployee(row.account_code, row.employee_number)}}>Delete</button>
+                                    }}>
+                                            <MdEdit /> 
+                                        </button>
+                                        <button className="btn btn-delete me-2" onClick={() => {deleteEmployee(row.account_code, row.employee_number)}}>
+                                            <MdDelete />
+                                        </button>
+                                    </div>
                                     </td>
                                 </tr>
                             ))}
@@ -188,7 +195,7 @@ function ManageEmployees({navigation}) {
                         <button className="btn btn-light me-2" onClick={previousPage} disabled={currentPage === 1}>
                             <i className="fa-solid fa-chevron-left"></i>
                         </button>
-                        <span>Page {currentPage} of {totalPages}</span>
+                        <span className='pagination'>Page {currentPage} of {totalPages}</span>
                         <button className="btn btn-light ms-2" onClick={nextPage} disabled={currentPage === totalPages}>
                             <i className="fa-solid fa-chevron-right"></i>
                         </button>

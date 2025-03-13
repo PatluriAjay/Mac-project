@@ -419,6 +419,26 @@ function CreateAccount() {
               </div>
             </div>
           </div>
+          <div className="col-12 col-lg-6 mb-3">
+            <div className="row align-items-center">
+              <div className="col-12 col-lg-4">
+                <label className="form-label">Validity Start Date</label>
+              </div>
+              <div className="col-12 col-lg-8">
+                <input type="date" className="form-control" placeholder="" />
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-lg-6 mb-3">
+            <div className="row align-items-center">
+              <div className="col-12 col-lg-4">
+                <label className="form-label">Validity End Date</label>
+              </div>
+              <div className="col-12 col-lg-8">
+                <input type="date" className="form-control" placeholder="" />
+              </div>
+            </div>
+          </div>
           {/* Adress text area */}
           <div className="col-12 mb-3">
             <div className="row align-items-center">
@@ -431,7 +451,7 @@ function CreateAccount() {
             </div>
           </div>
 
-          <div className="col-12 mb-3">
+          <div className="col-12 mb-3 d-none">
             <h5 className="mb-3" style={{ fontSize: ".82em" }}>
               <strong>Select Features</strong>
             </h5>

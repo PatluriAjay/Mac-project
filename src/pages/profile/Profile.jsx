@@ -8,10 +8,6 @@ import { getAccount, updateAccount } from '../../Api';
 import { useNavigate } from 'react-router-dom';
 import { compressImg } from "../../ImageCompressor";
 import Swal from "sweetalert2";
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
 
 function Profile() {
     const navigate = useNavigate();
@@ -78,6 +74,15 @@ function Profile() {
             return
         }
     }
+
+    
+    const [userRole, setUserRole] = React.useState(null);
+
+    useEffect(() => {
+        let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        
+        setUserRole(userData.role); // Extract the role from userData
+    }, []);
 
     const submit = async () => {
         console.log(empObj);
@@ -164,6 +169,12 @@ function Profile() {
         }
       })()
     }, [navigate])
+
+    const [companyType, setCompanyType] = React.useState('');
+    const handleCompanyTypeChange = (e) => {
+        setCompanyType(e.target.value);
+      };
+      
     
     return (
         <div className='employeeContainer'>
@@ -178,75 +189,211 @@ function Profile() {
                         <input type="file" accept=".png, .jpg, .jpeg, .webp" hidden ref={fileIp} onClick={handleReset} onChange={(ev) => {handleFile(ev)}} />
                         <button className="btn btn-dark px-4 my-3" onClick={() => {fileIp.current.click();}}>Upload</button>
                     </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField className='w-100' id="outlined-basic" disabled label="Company Name" variant="outlined" autoComplete="off" required 
-                            value={empObj.business_name || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, business_name: ev.target.value})
-                            }}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField disabled className='w-100' id="outlined-basic" label="Mobile Number" variant="outlined" autoComplete="off" required 
-                            value={empObj.phone || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, phone: ev.target.value})
-                            }}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField disabled className='w-100' id="outlined-basic" label="Email" variant="outlined" autoComplete="off" required
-                            value={empObj.email || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, email: ev.target.value})
-                            }}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField className='w-100' id="outlined-basic" label="Notification Email" variant="outlined" autoComplete="off" required
-                            value={empObj.notification_email || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, notification_email: ev.target.value})
-                            }}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker disabled className='w-100' label="Validity Start Date*" 
-                                value={dayjs(empObj.validity_start_date) || ''}
-                                onChange={(ev) => {
-                                    let date = dayjs(ev.$d).format('YYYY-MM-DD');
-                                    setEmpObj({...empObj, validity_start_date: date})
-                                }} 
-                            />
-                        </LocalizationProvider>
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker disabled className='w-100' label="Validity End Date*" 
-                                value={dayjs(empObj.validity_end_date) || ''}
-                                onChange={(ev) => {
-                                    let date = dayjs(ev.$d).format('YYYY-MM-DD');
-                                    setEmpObj({...empObj, validity_end_date: date})
-                                }} 
-                            />
-                        </LocalizationProvider>
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField disabled className='w-100' id="outlined-basic" type={'number'} label="No of Employees" variant="outlined" autoComplete="off" required
-                            value={empObj.no_of_employees || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, no_of_employees: ev.target.value})
-                            }}
-                        />
-                    </div>
-                    <div className="col-12 col-lg-6 mb-3">
-                        <TextField disabled className='w-100' id="outlined-basic" type={'number'} label="No of Locations" variant="outlined" autoComplete="off" required
-                            value={empObj.no_of_locations || ''}
-                            onChange={(ev) => {
-                                setEmpObj({...empObj, no_of_locations: ev.target.value})
-                            }}
-                        />
+                    <div className="row">
+                        {userRole === 3 && (
+                            <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                              <div className="col-12 col-lg-4">
+                                <label className="form-label">Type</label>
+                              </div>
+                              <div className="col-12 col-lg-8">
+                                <select
+                                    className="form-select"
+                                    aria-label="Default select example"
+                                    value={companyType}
+                                    onChange={handleCompanyTypeChange}
+                                >
+                                  <option value="">Select Company</option>
+                                  <option value="Company">Company</option>
+                                  <option value="Individual">Individual</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Company Name</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.business_name || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, business_name: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Main PIC Name</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.business_name || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, business_name: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Email</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.notification_email || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, notification_email: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Mobile Number</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.phone || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, phone: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Validity Start Date</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="date" 
+                                    className="form-control" 
+                                    value={empObj.validity_start_date || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, validity_start_date: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">Validity End Date</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="date" 
+                                    className="form-control" 
+                                    value={empObj.validity_end_date || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, validity_end_date: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        {!(companyType === 'Individual') && (
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">GST</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.no_of_employees || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, no_of_employees: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        )}
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">PAN</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.no_of_locations || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, no_of_locations: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">City</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.no_of_locations || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, no_of_locations: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        <div className="col-12 col-lg-6 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-4">
+                                    <label className="form-label">State</label>
+                                </div>
+                                <div className="col-12 col-lg-8">
+                                    <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    value={empObj.no_of_locations || ''}
+                                    onChange={(ev) => {
+                                        setEmpObj({...empObj, no_of_locations: ev.target.value})
+                                    }}
+                                    />
+                                </div>
+                            </div>     
+                        </div>
+                        <div className="col-12 mb-3">
+                            <div className="row">
+                                <div className="col-12 col-lg-2">
+                                    <label className="form-label">Address</label>
+                                </div>
+                                <div className="col-12 col-lg-10">
+                                    <textarea className="form-control" placeholder="" rows={1} />
+                                </div>
+                            </div>     
+                        </div>
                     </div>
                 </div>
                 <div className='text-center'>

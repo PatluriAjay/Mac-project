@@ -6,6 +6,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
 import { changePassword } from "../../Api";
 import Swal from "sweetalert2";
+import { RemoveRedEye } from "@mui/icons-material";
 function ResetPassword() {
   const navigate = useNavigate();
   const [userObj, setUserObj] = useState({
@@ -14,7 +15,9 @@ function ResetPassword() {
     confirmPassword: "",
     account_code: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword1, setShowPassword1] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
+  const [showPassword3, setShowPassword3] = useState(false);
 
   const submit = async () => {
     let formData = { ...userObj };
@@ -136,86 +139,62 @@ function ResetPassword() {
         </div>
       </div>
       <div className="row justify-content-center px-0 mx-0" style={{boxShadow:"0 0 2px 2px #e2e1e2", border:"none", borderRadius:"10px"}}>
-        <div className="col-12 h-100 bg-white p-4 card ">
-          <TextField
-            label="Old Password"
-            variant="outlined"
-            type={showPassword ? "text" : "password"}
-            className="mb-4 w-100 text-field"
-            autoComplete="off"
-            
-            onChange={(ev) => {
-              setUserObj({ ...userObj, oldPassword: ev.target.value });
-            }}
-            InputProps={{
-              style:{
-                fontSize:".82em"
-              },
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => {
-                      setShowPassword(!showPassword);
-                    }}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="New Password"
-            variant="outlined"
-            type={showPassword ? "text" : "password"}
-            className="mb-4 w-100"
-            autoComplete="off"
-            onInput={(ev) => {
-              setUserObj({ ...userObj, newPassword: ev.target.value });
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => {
-                      setShowPassword(!showPassword);
-                    }}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            label="Confirm Password"
-            variant="outlined"
-            type={showPassword ? "text" : "password"}
-            className="mb-4 w-100"
-            autoComplete="off"
-            onInput={(ev) => {
-              setUserObj({ ...userObj, confirmPassword: ev.target.value });
-            }}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() => {
-                      setShowPassword(!showPassword);
-                    }}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+        <div className="col-12 h-100 bg-white p-4 card">
+          <div className="row mb-3">
+            <div className="col-12 col-lg-4">
+              <label className="form-label">Old Password</label>
+            </div>
+            <div className="col-12 col-lg-8">
+              <div className="password-container">
+              <input 
+                  type={showPassword1 ? "text" : "password"} 
+                  className="form-control password" 
+                />
+                <span className="toggle-icon" onClick={() => {
+                      setShowPassword1(!showPassword1);
+                    }}>
+                  {showPassword1 ? <VisibilityOff /> : <Visibility />}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col-12 col-lg-4">
+              <label className="form-label">New Password</label>
+            </div>
+            <div className="col-12 col-lg-8">
+              <div className="password-container">
+              <input 
+                  type={showPassword2 ? "text" : "password"} 
+                  className="form-control password" 
+                />
+                <span className="toggle-icon" onClick={() => {
+                      setShowPassword2(!showPassword2);
+                    }}>
+                  {showPassword2 ? <VisibilityOff /> : <Visibility />}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col-12 col-lg-4">
+              <label className="form-label">Confirm Password</label>
+            </div>
+            <div className="col-12 col-lg-8">
+              <div className="password-container">
+              <input 
+                  type={showPassword3 ? "text" : "password"} 
+                  className="form-control password" 
+                />
+                <span className="toggle-icon" onClick={() => {
+                      setShowPassword3(!showPassword3);
+                    }}>
+                  {showPassword3 ? <VisibilityOff /> : <Visibility />}
+                </span>
+              </div>
+            </div>
+          </div>
+          
           <div className="text-center mt-3">
             <button
               className="btn btn-dark px-4"

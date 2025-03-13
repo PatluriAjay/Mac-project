@@ -12,3 +12,16 @@
 .MuiFormControl-root label{
   font-size: .82em !important;
 }
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}

@@ -101,7 +101,7 @@ const ActivitySummaryClient = () => {
 
     return (
         <div className="padding">
-            <h5 className='create-employee mb-3'>Activity Summary (Client)</h5>
+            <h5 className='create-employee mb-3'>Activity Summary</h5>
             <div className='ActivitySummaryClient '>
                 <div className="filters-data">
                     <div className="filters">

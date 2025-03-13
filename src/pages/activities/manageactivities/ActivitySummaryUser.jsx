@@ -136,7 +136,7 @@ const ActivitySummaryClientCopy = () => {
 
     return (
         <div className="padding">
-            <h5 className='create-employee mb-3'>Activity Summary (User)</h5>
+            <h5 className='create-employee mb-3'>Activity Summary User</h5>
             <div className='ActivitySummaryClient'>
             <div className="filters-data">
                     <div className="filters">
@@ -341,7 +341,7 @@ const ActivitySummaryClientCopy = () => {
                                 <tbody>
                                     {tableData.length > 0 ? (
                                         tableData.map((data, index) => (
-                                            <tr key={index} className='table-row-color' onClick={() => navigate('/app/edit-activity')} >
+                                            <tr key={index} className='table-row-color' onClick={() => navigate('/app/activity-screen-enduser')} >
                                                 <td>
                                                     <div className='d-flex align-items-center'>
                                                         <input

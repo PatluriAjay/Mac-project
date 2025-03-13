@@ -21,9 +21,9 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
       <div className="sidebarContent" key={role}>
         {+role === 1 && <>
           <Link onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/admin/dashboard' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+            <div className={pathname === '/admin/home' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdDashboard className='icon' />
-              <p className='actualText'>Dashboard</p>
+              <p className='actualText'>Home</p>
             </div>
           </Link>
           <Link to="/admin/create-client" onClick={() => {closeSideMenu()}} className="sidebar-link">
@@ -53,7 +53,7 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
           <Link to="/app/search-vendors" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/search-vendors' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
-              <p className='actualText'>Search Vendors</p>
+              <p className='actualText'>Search Vendor</p>
             </div>
           </Link>
           <Link to="/app/assign-vendors" onClick={() => {closeSideMenu()}} className="sidebar-link">
@@ -62,42 +62,38 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
               <p className='actualText'>Assign Vendors</p>
             </div>
           </Link>
-          <Link to="/app/profile" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/profile' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-              <MdOutlinePerson className='icon' />
-              <p className='actualText'>Profile</p>
+          <Link onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/reports' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Reports</p>
             </div>
           </Link>
         </>}
-        {+role === 2 && <>
+        {/* Store Manager */}
+        {+role === 3 && <>
           <Link  onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/dashboard' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+            <div className={pathname === '/app/home' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdDashboard className='icon' />
-              <p className='actualText'>Dashboard</p>
+              <p className='actualText'>Home</p>
             </div>
           </Link>
-          <Link to="/app/create-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
+           <Link to="/app/create-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/create-activity' ? 'subContent mb-2 active' : 'subContent mb-2' }>
             <MdOutlinePersonAdd className='icon' />
               <p className='actualText'>Create Activity</p>
             </div>
           </Link>
-          <Link to="/app/edit-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
+          {/* <Link to="/app/edit-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/edit-activity' ? 'subContent mb-2 active' : 'subContent mb-2' }>
             <MdOutlinePersonAdd className='icon' />
               <p className='actualText'>Edit Activity</p>
             </div>
-          </Link>
-          {/* <Link to="/app/manage-activities" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/manage-activities' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-              <MdOutlineGroup className='icon' />
-              <p className='actualText'>Manage Activities</p>
-            </div>
           </Link> */}
+          
           <Link to="/app/manage-activitie" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/manage-activitie' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
-              <p className='actualText'>Activity Summary (Client)</p>
+              <p className='actualText'>Manage Activity</p>
             </div>
           </Link>
           {/* <Link to="/app/manage-activity2" onClick={() => {closeSideMenu()}} className="sidebar-link">
@@ -106,30 +102,25 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
               <p className='actualText'>Activity Summary(Client-2)</p>
             </div>
           </Link> */}
-          {/* <Link to="/app/activity-summary" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/activity-summary' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-              <MdOutlineGroup className='icon' />
-              <p className='actualText'>Activity Summary</p>
-            </div>
-          </Link> */}
+          
           <Link to="/app/activity-summary-user" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/activity-summary-user' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
-              <p className='actualText'>Activity Summary (User)</p>
+              <p className='actualText'>Activity Summary</p>
             </div>
           </Link>
-          <Link to="/app/activity-screen-enduser" onClick={() => {closeSideMenu()}} className="sidebar-link">
+         {/*  <Link to="/app/activity-screen-enduser" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/activity-screen-enduser' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
               <p className='actualText'>Activity (End User)</p>
             </div>
-          </Link>
-          <Link to="/app/activity-vendor-user" onClick={() => {closeSideMenu()}} className="sidebar-link">
+          </Link> */}
+          {/* <Link to="/app/activity-vendor-user" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/activity-vendor-user' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
               <p className='actualText'>Activity (Vendor User)</p>
             </div>
-          </Link>
+          </Link> */}
 
           {/* <Link to="/app/create-vendor-request" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/create-vendor-request' ? 'subContent mb-2 active' : 'subContent mb-2' }>
@@ -137,30 +128,8 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
               <p className='actualText'>Create Vendor Request</p>
             </div>
           </Link> */}
-          <Link to="/app/create-store" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/create-store' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-            <MdOutlinePersonAdd className='icon' />
-              <p className='actualText'>Create Store</p>
-            </div>
-          </Link>
-          <Link to="/app/manage-stores" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/manage-stores' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-              <MdOutlineGroup className='icon' />
-              <p className='actualText'>Manage Stores</p>
-            </div>
-          </Link>
-          {/* <Link to="/app/create-employee" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/create-employee' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-            <MdOutlinePersonAdd className='icon' />
-              <p className='actualText'>Create Employee</p>
-            </div>
-          </Link> */}
-          {/* <Link to="/app/manage-employees" onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/manage-employees' ? 'subContent mb-2 active' : 'subContent mb-2' }>
-              <MdOutlineGroup className='icon' />
-              <p className='actualText'>Manage Employees</p>
-            </div>
-          </Link> */}
+          
+          {/*  */}
           <Link to="/app/profile" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/profile' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlinePerson className='icon' />
@@ -168,11 +137,24 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
             </div>
           </Link>
         </>}
-        {+role === 3 && <>
+        {/* Client Admin */}
+        {+role === 2 && <>
           <Link onClick={() => {closeSideMenu()}} className="sidebar-link">
-            <div className={pathname === '/app/dashboard' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+            <div className={pathname === '/app/home' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdDashboard className='icon' />
-              <p className='actualText'>Dashboard</p>
+              <p className='actualText'>Home</p>
+            </div>
+          </Link>
+          {/* <Link to="/app/create-store" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/create-store' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+            <MdOutlinePersonAdd className='icon' />
+              <p className='actualText'>Create Store</p>
+            </div>
+          </Link> */}
+          <Link to="/app/manage-stores" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/manage-stores' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Stores</p>
             </div>
           </Link>
           <Link to="/app/create-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
@@ -181,6 +163,47 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
               <p className='actualText'>Create Activity</p>
             </div>
           </Link>
+          <Link to="/app/manage-activitie" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/manage-activitie' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Activity Summary</p>
+            </div>
+          </Link>
+          <Link to="/app/search-vendors" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/search-vendors' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Search Vendor</p>
+            </div>
+          </Link>
+          <Link to="/app/assign-vendors" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/assign-vendors' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Associate Vendor</p>
+            </div>
+          </Link>
+          {/* <Link to="/app/create-employee" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/create-employee' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+            <MdOutlinePersonAdd className='icon' />
+              <p className='actualText'>Create Employee</p>
+            </div>
+          </Link> */}
+          <Link to="/app/manage-employees" onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className={pathname === '/app/manage-employees' ? 'subContent mb-2 active' : 'subContent mb-2' }>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Employees</p>
+            </div>
+          </Link>
+          
+          
+          {/* <Link onClick={() => {closeSideMenu()}} className="sidebar-link">
+            <div className='subContent mb-2'>
+              <MdOutlineGroup className='icon' />
+              <p className='actualText'>Invite / Invitations</p>
+            </div>
+          </Link> */}
+           
+          
+          
           {/* <Link to="/app/edit-activity" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/edit-activity' ? 'subContent mb-2 active' : 'subContent mb-2' }>
             <MdOutlinePersonAdd className='icon' />
@@ -194,7 +217,7 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
             </div>
           </Link> */}
           
-          <Link to="/app/manage-assignedtasks" onClick={() => {closeSideMenu()}} className="sidebar-link">
+          {/* <Link to="/app/manage-assignedtasks" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/manage-assignedtasks' ? 'subContent mb-2 active' : 'subContent mb-2' }>
               <MdOutlineGroup className='icon' />
               <p className='actualText'>Assigned Tasks</p>
@@ -205,7 +228,7 @@ function Sidebar({ stateVal, trigger, role, accountType }) {
               <MdOutlineGroup className='icon' />
               <p className='actualText'>Approved Tasks</p>
             </div>
-          </Link>
+          </Link> */}
           {/* <Link to="/app/create-employee" onClick={() => {closeSideMenu()}} className="sidebar-link">
             <div className={pathname === '/app/create-employee' ? 'subContent mb-2 active' : 'subContent mb-2' }>
             <MdOutlinePersonAdd className='icon' />

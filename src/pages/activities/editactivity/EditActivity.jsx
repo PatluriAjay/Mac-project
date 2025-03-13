@@ -521,6 +521,15 @@ function EditActivity() {
             { "field": "Expected Completion Date", "type": "date", "placeholder": "Enter Expected Completion Date" },
         ]
 
+
+         const [userRole, setUserRole] = React.useState(null);
+            
+             useEffect(() => {
+                 let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+                 
+                 setUserRole(userData.role); // Extract the role from userData
+             }, []);
+
   return (
     <div className="employeeContainer">
       <h5 className="create-employee">Edit Activity</h5>
@@ -756,7 +765,8 @@ function EditActivity() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-lg-6 mb-3">
+          {userRole === 2 && (
+            <div className="col-12 col-lg-6 mb-3">
             <div className="row">
               <div className="col-12 col-lg-4">
                 <label className="form-label">Execution By</label>
@@ -779,6 +789,33 @@ function EditActivity() {
               </div>
             </div>
           </div>
+          )}
+          
+          {userRole === 3 && (
+            <div className="col-12 mb-3">
+            <div className="row">
+              <div className="col-12 col-lg-2">
+                <label className="form-label">Execution By</label>
+              </div>
+              <div className="col-12 col-lg-10">
+                <select
+                  className="form-select"
+                  value={formObj.execution_id}
+                  onChange={handleExecutorChange}
+                >
+                  <option value="" disabled>
+                    Select an Executor
+                  </option>
+                  {executorOptions.map((executor) => (
+                    <option key={executor.id} value={executor.id}>
+                      {executor.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+          )}
           {/* <div className="col-12 col-lg-6 mb-3">
                         <div className="row">
                             <div className="col-12 col-lg-4">
@@ -816,7 +853,8 @@ function EditActivity() {
                         
                         
                     </div> */}
-          <div className="col-12 col-lg-6 mb-3">
+                    {userRole === 2 && (
+                      <div className="col-12 col-lg-6 mb-3">
             <div className="row">
               <div className="col-12 col-lg-4">
                 <label className="form-label">Select Store</label>
@@ -865,6 +903,8 @@ function EditActivity() {
               </div>
             </div>
           </div>
+                    )}
+          
           <div className="col-12 col-lg-6 mb-3">
             <h6 className="mb-3 text-black" style={{ textWrap: 'nowrap' }}>
               <strong>Reference PPT</strong>
@@ -1472,7 +1512,7 @@ function EditActivity() {
         <button
           className="btn btn-danger px-4"
           onClick={() => {
-            navigate('/app/manage-activities');
+            navigate('/app/manage-activitie');
           }}
         >
           Cancel

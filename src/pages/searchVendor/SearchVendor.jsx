@@ -11,18 +11,18 @@ const paginatedData = [
     email: "abc@example.com",
     person_name: "John Doe",
   },
-  {
-    organization_name: "XYZ Enterprises",
-    phone: "8765432109",
-    email: "xyz@example.com",
-    person_name: "Jane Doe",
-  },
-  {
-    organization_name: "PQR Solutions",
-    phone: "7654321098",
-    email: "pqr@example.com",
-    person_name: "Alice Smith",
-  },
+  // {
+  //   organization_name: "XYZ Enterprises",
+  //   phone: "8765432109",
+  //   email: "xyz@example.com",
+  //   person_name: "Jane Doe",
+  // },
+  // {
+  //   organization_name: "PQR Solutions",
+  //   phone: "7654321098",
+  //   email: "pqr@example.com",
+  //   person_name: "Alice Smith",
+  // },
 ];
 
 function SearchVendor() {

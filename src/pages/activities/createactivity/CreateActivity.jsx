@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./createactivity.css"
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -141,6 +141,15 @@ function CreateActivity() {
         setTaskCards([...taskCards, newTask]);
         setShowAddTask(false); // Hide "Add Task" after adding a new task
     };
+
+
+    const [userRole, setUserRole] = React.useState(null);
+    
+     useEffect(() => {
+         let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+         
+         setUserRole(userData.role); // Extract the role from userData
+     }, []);
     
     return (
         <div className="employeeContainer">
@@ -252,7 +261,8 @@ function CreateActivity() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-6 mb-3">
+                    {userRole === 2 && (
+                        <div className="col-12 col-lg-6 mb-3">
                         <div className="row align-items-center">
                             <div className="col-12 col-lg-4">
                                 <label className="form-label">Execution By</label>
@@ -266,7 +276,26 @@ function CreateActivity() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-12 col-lg-6 mb-3">
+                    )}
+                    {userRole === 3 && (
+                        <div className="col-12 mb-3">
+                            <div className="row align-items-center">
+                                <div className="col-12 col-lg-2">
+                                    <label className="form-label">Execution By</label>
+                                </div>
+                                <div className="col-12 col-lg-10">
+                                    <select className="form-select">
+                                        <option value="" disabled selected>Select an Executor</option>
+                                        <option value="vendor1">Vendor</option>
+                                        <option value="vendor2">Store Team</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    {userRole === 2 && (
+                        <div className="col-12 col-lg-6 mb-3">
                         <div className="row align-items-center">
                             <div className="col-12 col-lg-4">
                             <label htmlFor="storeSelect" className="form-label">
@@ -303,6 +332,8 @@ function CreateActivity() {
                             </div>
                         </div>
                     </div>
+                    )}
+                    
                     <div className="col-12 col-lg-6 mb-3">
                         <h6 className="mb-3 text-black" style={{ textWrap: "nowrap" }}>
                             <strong>Reference PPT</strong>
@@ -332,7 +363,7 @@ function CreateActivity() {
                         <h6 className="mb-3 text-black" style={{ textWrap: "nowrap" }}>
                             <strong>Commercial Documents</strong>
                         </h6>
-                        <div className="upload-doc-file">
+                        <div className="upload-doc-file mt-3">
                             <div className="d-flex align-items-center">
                                 <label className="btn" id="doc-file" style={{ cursor: "pointer", padding: "0.6rem 1rem" }}>
                                     Choose File
