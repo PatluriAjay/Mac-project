@@ -152,7 +152,7 @@ const ActivitySummaryClientCopy = () => {
                             return (
                                 <div key={index} className="field">
                                     <label>{field.field}</label>
-                                    <input type={field.type} placeholder={field.placeholder} />
+                                    <input type={field.type} value={field.placeholder} />
                                 </div>
                             )
                         })}

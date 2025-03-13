@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { TextField } from "@mui/material";
 // import { createLoc } from '../../../Api';
 import Swal from "sweetalert2";
@@ -11,18 +11,18 @@ const paginatedData = [
     email: "abc@example.com",
     person_name: "John Doe",
   },
-  // {
-  //   organization_name: "XYZ Enterprises",
-  //   phone: "8765432109",
-  //   email: "xyz@example.com",
-  //   person_name: "Jane Doe",
-  // },
-  // {
-  //   organization_name: "PQR Solutions",
-  //   phone: "7654321098",
-  //   email: "pqr@example.com",
-  //   person_name: "Alice Smith",
-  // },
+  {
+    organization_name: "XYZ Enterprises",
+    phone: "8765432109",
+    email: "xyz@example.com",
+    person_name: "Jane Doe",
+  },
+  {
+    organization_name: "PQR Solutions",
+    phone: "7654321098",
+    email: "pqr@example.com",
+    person_name: "Alice Smith",
+  },
 ];
 
 function SearchVendor() {
@@ -32,7 +32,6 @@ function SearchVendor() {
   const [pan, setPan] = React.useState("");
   const [gst, setGst] = React.useState("");
   const [macId, setMacId] = React.useState("");
-  const [showTable, setShowTable] = useState(false);
 
   const submit = async () => {
     if (!name) {
@@ -71,10 +70,6 @@ function SearchVendor() {
         mac_id: macId,
       };
     }
-  };
-
-  const submitted = async () => {
-    setShowTable(true);
   };
 
   useEffect(() => {
@@ -164,7 +159,7 @@ function SearchVendor() {
           onClick={() => {navigate('/app/manage-stores')}}
         </div>
       </div> */}
-
+      
       <div className="card forms-card">
         <div className="row ">
           <div className="col-12 col-lg-6 mb-3">
@@ -208,45 +203,42 @@ function SearchVendor() {
             </div>
           </div>
           <div className="col-12 text-center mt-4">
-            <button onClick={submitted} className="btn btn-dark px-4 me-4">
-              Submit
-            </button>
+            <button className="btn btn-dark px-4 me-4">Submit</button>
             <button className="btn btn-danger px-4">Cancel</button>
           </div>
         </div>
       </div>
-
-      {showTable && (
-        <div className="tableContainer activity-table mt-3">
-          <table className="table">
-            <thead>
-              <tr>
-                <th className="table-heading" scope="col">
-                  Vendor name
-                </th>
-                <th className="table-heading" scope="col">
-                  PAN Number
-                </th>
-                <th className="table-heading" scope="col">
-                  GST Number
-                </th>
-                <th className="table-heading" scope="col">
-                  Mac Id
-                </th>
-                {/* className='table-heading' <th scope="col">Account Code</th> */}
-                {/* <th className="table-heading" scope="col">
+      
+      <div className="tableContainer activity-table mt-3">
+        <table className="table">
+          <thead>
+            <tr>
+              <th className="table-heading" scope="col">
+                Vendor name
+              </th>
+              <th className="table-heading" scope="col">
+                PAN Number
+              </th>
+              <th className="table-heading" scope="col">
+                GST Number
+              </th>
+              <th className="table-heading" scope="col">
+                Mac Id
+              </th>
+              {/* className='table-heading' <th scope="col">Account Code</th> */}
+              {/* <th className="table-heading" scope="col">
                 Actions
               </th> */}
-              </tr>
-            </thead>
-            <tbody>
-              {paginatedData.map((row, index) => (
-                <tr key={index} className="table-row-color">
-                  <td>{row.organization_name}</td>
-                  <td>{row.phone}</td>
-                  <td>{row.email}</td>
-                  <td>{row.person_name}</td>
-                  {/* <td>
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedData.map((row, index) => (
+              <tr key={index} className="table-row-color">
+                <td>{row.organization_name}</td>
+                <td>{row.phone}</td>
+                <td>{row.email}</td>
+                <td>{row.person_name}</td>
+                {/* <td>
                     <div className="d-flex justify-content-center align-items-center">
                       <button className="btn btn-add me-2">
                         <MdCheckBox />
@@ -259,11 +251,11 @@ function SearchVendor() {
                       </button>
                     </div>
                   </td> */}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {/* <div className="d-flex justify-content-end align-items-center">
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {/* <div className="d-flex justify-content-end align-items-center">
           <button
             className="btn btn-light me-2"
             onClick={previousPage}
@@ -282,8 +274,7 @@ function SearchVendor() {
             <i className="fa-solid fa-chevron-right"></i>
           </button>
         </div> */}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
